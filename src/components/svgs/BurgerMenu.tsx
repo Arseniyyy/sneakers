@@ -1,7 +1,4 @@
-import React from 'react'
-
 interface IProps {
-  fill: string
   width: string
   height: string
 }
