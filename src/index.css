@@ -30,29 +30,20 @@ code {
   padding-top: 10px;
 }
 
-/* li, a, button { */
-/*   font-family: "Montserrat", sans-serif; */
-/*   font-weight: 500; */
-/*   font-size: 16px; */
-/*   color: #edf0f1; */
-/*   text-decoration: none; */
-/* } */
-
-/* header { */
-/*   display: flex; */
-/*   justify-content: space-between; */
-/*   align-items: center; */
-/*   padding: 30px 10%; */
-/* } */
-
-.nav__links li a {
-  transition: all 0.3s ease 0s;
+.sidebar {
+  transform: translateX(100%);
+  transition: transform 0.2s ease-in-out;
 }
 
-.nav__links li a:hover {
-  color: #0088a9;
+.sidebar.open {
+  transform: translateX(0); /* Move the sidebar to the visible area */
 }
 
-span {
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+.icon-not-hovered {
+  stroke: #000;
+}
+
+.icon-hovered {
+  stroke: #FFA500;
 }
