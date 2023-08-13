@@ -9,7 +9,6 @@ import { svgTransitionColors } from 'styles'
 interface IProps {}
 
 const Navbar = (props: IProps) => {
-  const iconsStyles = { width: 35, height: 35 }
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)")
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false)
 
