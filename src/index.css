@@ -25,11 +25,6 @@ code {
   background-color: #edf0f1;
 }
 
-#page-wrap {
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-
 .sidebar {
   transform: translateX(100%);
   transition: transform 0.2s ease-in-out;
@@ -39,11 +34,14 @@ code {
   transform: translateX(0); /* Move the sidebar to the visible area */
 }
 
-
 .icon-not-hovered {
   stroke: #000;
 }
 
 .icon-hovered {
   stroke: #FFA500;
+}
+
+.grid {
+  grid-template-columns: repeat(auto-fill, 186px);
 }

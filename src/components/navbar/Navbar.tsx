@@ -1,37 +1,48 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import CartIcon from 'components/icons/CartIcon'
 import useMediaQuery from 'hooks/useMediaQuery'
 import BurgerMenuIcon from 'components/icons/BurgerMenuIcon'
 import ProfileIcon from 'components/icons/ProfileIcon'
 import Sidebar from './Sidebar'
-import { svgTransitionColors } from 'styles'
 
-interface IProps {}
-
-const Navbar = (props: IProps) => {
-  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)")
+const Navbar = () => {
+  const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)')
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false)
+  const [scrollPosition, setScrollPosition] = useState<number>(0)
+  const isScrolled = scrollPosition > 120
+
+  const defaultIconWidth = '35px'
+  const defaultIconHeight = '35px'
+  const profileIconWidth = '30px'
+  const profileIconHeight = '30px'
 
   const handleMenuToggleClick = () => {
     setIsMenuToggled(!isMenuToggled)
   }
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY)
 
-  const defaultIconWidth = '35px'
-  const defaultIconHeight = '35px'
-
-  const profileIconWidth = '30px'
-  const profileIconHeight = '30px'
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return <div>
-    <nav id="page-wrap" className="flex justify-between items-center p-8 bg-zinc-100 font-montserrat text-base font-medium text-white no-underline">
-      <img className="logo" style={{ width: 210, height: 100 }} src="logo.svg" />
+    <nav className="flex justify-between items-center py-3 bg-zinc-100 font-montserrat text-base font-medium text-white no-underline">
+      <img alt="logo" style={{ width: 210, height: 100 }} src="logo.svg" />
       {
         isAboveMediumScreens ?
           <ul className="flex justify-between gap-4 mx-10">
             <button>
-              <CartIcon width={defaultIconWidth} height={defaultIconHeight} />
+              <CartIcon
+                className={`${isScrolled ? 'fixed bottom-10 right-10 z-30' : ''}`}
+                width={defaultIconWidth}
+                height={defaultIconHeight}
+              />
             </button>
-
             <button>
               <ProfileIcon width={profileIconWidth} height={profileIconHeight} />
             </button>
@@ -39,14 +50,21 @@ const Navbar = (props: IProps) => {
 
           :
 
-          <div className="w-9 h-9 focus:rounded-md focus:border-dashed focus:border-green outline-0">
+          <div className="w-9 h-9 mx-3.5">
             <button onClick={handleMenuToggleClick}>
               <BurgerMenuIcon width="35px" height="35px" />
             </button>
           </div>
       }
       {!isAboveMediumScreens && (
-        <Sidebar isMenuToggled={isMenuToggled} iconWidth={defaultIconWidth} iconHeight={defaultIconHeight} onClick={handleMenuToggleClick} />
+        <>
+          <Sidebar isMenuToggled={isMenuToggled} iconWidth={defaultIconWidth} iconHeight={defaultIconHeight} onClick={handleMenuToggleClick} />
+          <CartIcon
+            className="fixed bottom-10 right-3.5 z-30"
+            width={defaultIconWidth}
+            height={defaultIconHeight}
+          />
+        </>
       )}
     </nav>
   </div>
