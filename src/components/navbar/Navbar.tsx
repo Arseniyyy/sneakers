@@ -9,6 +9,7 @@ const Navbar = () => {
   const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)')
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false)
   const [scrollPosition, setScrollPosition] = useState<number>(0)
+  const [cartMoneyAmount, setCartMoneyAmount] = useState<number>(0)
   const isScrolled = scrollPosition > 120
 
   const defaultIconWidth = '35px'
@@ -35,14 +36,17 @@ const Navbar = () => {
       <img alt="logo" style={{ width: 210, height: 100 }} src="logo.svg" />
       {
         isAboveMediumScreens ?
-          <ul className="flex justify-between gap-4 mx-10">
+          <ul className="flex justify-between gap-6 mx-10">
             <button>
               <CartIcon
-                className={`${isScrolled ? 'fixed bottom-10 right-10 z-30' : ''}`}
+                className={`${isScrolled ? 'fixed bottom-10 right-10 z-30' : '-mx-4'}`}
                 width={defaultIconWidth}
                 height={defaultIconHeight}
               />
             </button>
+            <div className="text-black  font-thin py-3 pr-2">
+              {cartMoneyAmount}$
+            </div>
             <button>
               <ProfileIcon width={profileIconWidth} height={profileIconHeight} />
             </button>
@@ -50,22 +54,24 @@ const Navbar = () => {
 
           :
 
-          <div className="w-9 h-9 mx-3.5">
-            <button onClick={handleMenuToggleClick}>
-              <BurgerMenuIcon width="35px" height="35px" />
-            </button>
+          <div>
+            <div className="w-9 h-9 mx-3.5">
+              <button onClick={handleMenuToggleClick}>
+                <BurgerMenuIcon width="35px" height="35px" />
+              </button>
+            </div>
+            <Sidebar isMenuToggled={isMenuToggled} iconWidth={defaultIconWidth} iconHeight={defaultIconHeight} onClick={handleMenuToggleClick} />
+            <div>
+              <button>
+                <CartIcon
+                  className="fixed bottom-10 right-3.5 z-30"
+                  width={defaultIconWidth}
+                  height={defaultIconHeight}
+                />
+              </button>
+            </div>
           </div>
       }
-      {!isAboveMediumScreens && (
-        <>
-          <Sidebar isMenuToggled={isMenuToggled} iconWidth={defaultIconWidth} iconHeight={defaultIconHeight} onClick={handleMenuToggleClick} />
-          <CartIcon
-            className="fixed bottom-10 right-3.5 z-30"
-            width={defaultIconWidth}
-            height={defaultIconHeight}
-          />
-        </>
-      )}
     </nav>
   </div>
 }
