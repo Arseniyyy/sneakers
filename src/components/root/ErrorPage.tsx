@@ -1,6 +1,7 @@
 import { useRouteError } from 'react-router-dom'
 import NotFoundIcon from 'components/icons/NotFoundIcon'
 import Navbar from 'components/navbar/Navbar'
+import LinkButton from 'components/buttons/LinkButton'
 
 const ErrorPage = () => {
   const error: any = useRouteError()
@@ -20,6 +21,7 @@ const ErrorPage = () => {
           Status code is <b>{error.status}</b>
         </p>
       </h1>
+      <LinkButton href="/" text="Go to the homepage" />
     </div>
   </div>
 }
