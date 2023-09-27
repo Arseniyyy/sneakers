@@ -8,7 +8,7 @@ const NotFoundIcon = ({ className, width, height }: IIconProps) => {
     height={height}
     viewBox="0 0 60 60"
     fill="#000"
-    canBeHovered={false}
+    changeColorOnHover={false}
     notAnimated={true}
     paths={[
       ["M9,39h6v8c0,0.552,0.448,1,1,1s1-0.448,1-1v-8h3c0.552,0,1-0.448,1-1s-0.448-1-1-1h-3v-2c0-0.552-0.448-1-1-1s-1,0.448-1,1 v2h-5V27c0-0.552-0.448-1-1-1s-1,0.448-1,1v11C8,38.552,8.448,39,9,39z"],

@@ -21,7 +21,7 @@ const ErrorPage = () => {
           Status code is <b>{error.status}</b>
         </p>
       </h1>
-      <LinkButton href="/" text="Go to the homepage" />
+      <LinkButton backgroundColor="primary-500" href="/" text="Go to the homepage" />
     </div>
   </div>
 }

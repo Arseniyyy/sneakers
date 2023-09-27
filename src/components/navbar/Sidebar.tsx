@@ -1,18 +1,27 @@
+import RemoveOrCloseButton from 'components/icons/RemoveOrCloseButton'
 import XMarkIcon from 'components/icons/XMarkIcon'
+import { ReactElement } from 'react'
 
 interface IProps {
-  iconWidth: string
-  iconHeight: string
-  isMenuToggled: boolean
+  xMarkIconWidth: string | number
+  xMarkIconHeight: string | number
+  isToggled: boolean
+  header: string
+  chidlren?: ReactElement
   onClick: () => void
 }
 
-const Sidebar = (props: IProps) => {
-  return <div className={`sidebar fixed right-0 bottom-0 z-40 h-full w-[300px] bg-primary-100 drop-shadow-xl ${props.isMenuToggled ? 'open' : 'close'}`}>
-    <div className="flex justify-end p-12">
-      <button onClick={props.onClick}>
-        <XMarkIcon width={props.iconWidth} height={props.iconHeight} />
-      </button>
+const Sidebar = ({ xMarkIconWidth, xMarkIconHeight, isToggled, header, chidlren, onClick }: IProps) => {
+  return <div className={`fixed left-0 top-0 bg-black-0.5 ${isToggled ? 'z-[1] w-full h-full' : ''}`}>
+    <div className={`sidebar overflow-scroll fixed flex flex-col right-0 px-[30px] py-10 z-40 h-full min-w-[370px] max-w-[420px] bg-white-full drop-shadow-xl ${isToggled ? 'open' : ''}`}>
+      <div className="flex justify-between py-8 bg-white-full">
+        <h1 className="font-bold text-2xl">{header}</h1>
+        <button className="mr-4" onClick={onClick}>
+          {/* <XMarkIcon className="bg-white-full" width={xMarkIconWidth} height={xMarkIconHeight} /> */}
+          <RemoveOrCloseButton width={30} height={30} />
+        </button>
+      </div>
+      {chidlren}
     </div>
   </div>
 }

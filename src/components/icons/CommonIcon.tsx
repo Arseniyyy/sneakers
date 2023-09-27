@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ICommonIconProps } from 'types/icons'
+import { CommonIconProps } from 'types/icons'
 
 const CommonIcon = ({
   className,
@@ -15,16 +15,17 @@ const CommonIcon = ({
   fillRule,
   clipRule,
   isFillChanged,
-  canBeHovered,
+  isBackgroundColorStoney,
+  changeColorOnHover,
   notAnimated,
   paths,
-}: ICommonIconProps) => {
+}: CommonIconProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false)
-  const pathClassName = isFillChanged ? `transition ${isHovered ? 'fill-orange stroke-none' : 'stroke-none'}` : `transition ${isHovered ? 'stroke-orange' : 'stroke-black'}`
+  const pathClassName = isFillChanged ? `transition ${isHovered ? 'fill-orange-full stroke-none' : 'stroke-none'}` : `transition ${isHovered ? 'stroke-orange-full' : 'stroke-black'}`
 
   return (
     <svg
-      className={`${className} ${notAnimated ? '' : 'transition hover:scale-125'}`}
+      className={`${className} ${notAnimated ? '' : 'transition hover:scale-125'} ${isBackgroundColorStoney ? `bg-white-0.5` : ''}`}
       width={width}
       height={height}
       viewBox={viewBox}
@@ -40,7 +41,7 @@ const CommonIcon = ({
 
         {paths.map((array, index) => {
           return <path
-            className={canBeHovered ? pathClassName : ''}
+            className={changeColorOnHover ? pathClassName : ''}
             key={index}
             opacity={array[1]}
             d={array[0]}

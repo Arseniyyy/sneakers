@@ -4,10 +4,12 @@ import useMediaQuery from 'hooks/useMediaQuery'
 import BurgerMenuIcon from 'components/icons/BurgerMenuIcon'
 import ProfileIcon from 'components/icons/ProfileIcon'
 import Sidebar from './Sidebar'
+import Cart from 'components/cart'
 
 const Navbar = () => {
   const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)')
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false)
+  const [isCartToggled, setIsCartToggled] = useState<boolean>(false)
   const [scrollPosition, setScrollPosition] = useState<number>(0)
   const [cartMoneyAmount, setCartMoneyAmount] = useState<number>(0)
   const isScrolled = scrollPosition > 120
@@ -16,14 +18,15 @@ const Navbar = () => {
   const defaultIconHeight = '35px'
   const profileIconWidth = '30px'
   const profileIconHeight = '30px'
+  const xMarkIconWidth = 20
+  const xMarkIconHeight = 20
 
-  const handleMenuToggleClick = () => {
-    setIsMenuToggled(!isMenuToggled)
-  }
+  const handleCartToggleClick = () => setIsCartToggled(!isCartToggled)
+  const handleMenuToggleClick = () => setIsMenuToggled(!isMenuToggled)
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY)
-
     }
     window.addEventListener('scroll', handleScroll)
     return () => {
@@ -33,18 +36,78 @@ const Navbar = () => {
 
   return <div>
     <nav className="flex justify-between items-center py-3 bg-zinc-100 font-montserrat text-base font-medium text-white no-underline">
+      {/* Sidebar elements */}
+      <Sidebar
+        header="Cart"
+        chidlren={<Cart items={[
+          {
+            imgPath: "img/sneakers/2.jpg",
+            text: "Man sneakers Nike Blazer Mid Seude",
+            price: 99,
+          },
+          {
+            imgPath: "img/sneakers/2.jpg",
+            text: "Man sneakers Nike Blazer Mid Seude",
+            price: 99,
+          },
+          {
+            imgPath: "img/sneakers/2.jpg",
+            text: "Man sneakers Nike Blazer Mid Seude",
+            price: 99,
+          },
+          {
+            imgPath: "img/sneakers/2.jpg",
+            text: "Man sneakers Nike Blazer Mid Seude",
+            price: 99,
+          },
+          {
+            imgPath: "img/sneakers/2.jpg",
+            text: "Man sneakers Nike Blazer Mid Seude",
+            price: 99,
+          },
+          {
+            imgPath: "img/sneakers/2.jpg",
+            text: "Man sneakers Nike Blazer Mid Seude",
+            price: 99,
+          },
+          {
+            imgPath: "img/sneakers/2.jpg",
+            text: "Man sneakers Nike Blazer Mid Seude",
+            price: 99,
+          },          {
+            imgPath: "img/sneakers/2.jpg",
+            text: "Man sneakers Nike Blazer Mid Seude",
+            price: 99,
+          },          {
+            imgPath: "img/sneakers/2.jpg",
+            text: "Man sneakers Nike Blazer Mid Seude",
+            price: 99,
+          },
+        ]} />}
+        isToggled={isCartToggled}
+        xMarkIconWidth={xMarkIconWidth}
+        xMarkIconHeight={xMarkIconHeight}
+        onClick={handleCartToggleClick}
+      />
+      <Sidebar
+        isToggled={isMenuToggled}
+        header="Menu"
+        xMarkIconWidth={xMarkIconWidth}
+        xMarkIconHeight={xMarkIconHeight}
+        onClick={handleMenuToggleClick}
+      />
       <img alt="logo" style={{ width: 210, height: 100 }} src="logo.svg" />
       {
         isAboveMediumScreens ?
           <ul className="flex justify-between gap-6 mx-10">
-            <button>
+            <button onClick={handleCartToggleClick}>
               <CartIcon
-                className={`${isScrolled ? 'fixed bottom-10 right-10 z-30' : '-mx-4'}`}
+                className={`${isScrolled ? 'fixed bottom-10 right-10 z-0' : '-mx-4'}`}
                 width={defaultIconWidth}
                 height={defaultIconHeight}
               />
             </button>
-            <div className="text-black  font-thin py-3 pr-2">
+            <div className="text-black font-thin py-3 pr-2">
               {cartMoneyAmount}$
             </div>
             <button>
@@ -60,11 +123,10 @@ const Navbar = () => {
                 <BurgerMenuIcon width="35px" height="35px" />
               </button>
             </div>
-            <Sidebar isMenuToggled={isMenuToggled} iconWidth={defaultIconWidth} iconHeight={defaultIconHeight} onClick={handleMenuToggleClick} />
             <div>
-              <button>
+              <button onClick={handleCartToggleClick}>
                 <CartIcon
-                  className="fixed bottom-10 right-3.5 z-30"
+                  className="fixed bottom-10 right-3.5 z-0"
                   width={defaultIconWidth}
                   height={defaultIconHeight}
                 />

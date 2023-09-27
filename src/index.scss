@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200;10..48,300;10..48,400;10..48,500;10..48,600;10..48,700;10..48,800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+.sidebar {
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Move the sidebar to the visible area */
+}
+
+.icon-not-hovered {
+  stroke: #000;
+}
+
+.icon-hovered {
+  stroke: #FFA500;
+}
+
+.cartTotalBlock {
+  margin-top: 20px;
+  ul {
+    li {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+
+      div {
+        flex: 1;
+        height: 1px;
+        border-bottom: 1px dashed #dfdfdf;
+        position: relative;
+        bottom: 4px;
+        margin: 0 7px;
+      }
+    }
+  }
+
+  .blackButton {
+    position: relative;
+
+    &:disabled {
+      animation: button-loading 0.6s ease-in-out infinite;
+    }
+
+    &:hover {
+      .arrowIcon {
+        transform: translateX(5px);
+      }
+    }
+  }
+}
+
+.blackButton {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 45px;
+  background: #9dd558;
+  border-radius: 18px;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.1s ease-in-out;
+
+  &:disabled {
+    background-color: #bebebe !important;
+    cursor: default;
+  }
+
+  &:hover {
+    .arrowIcon {
+      background: lighten(#9dd558, 5%);
+    }
+
+    background: lighten(#9dd558, 5%);
+  }
+
+  &:active {
+    background: darken(#9dd558, 5%);
+  }
+}
+
+.removeButton {
+  align-self: center;
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  opacity: 0.45;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
