@@ -1,7 +1,7 @@
 import { useRouteError } from 'react-router-dom'
 import NotFoundIcon from 'components/icons/NotFoundIcon'
 import Navbar from 'components/navbar/Navbar'
-import LinkButton from 'components/buttons/LinkButton'
+import PrimaryButton from 'components/buttons/PrimaryButton'
 
 const ErrorPage = () => {
   const error: any = useRouteError()
@@ -15,13 +15,15 @@ const ErrorPage = () => {
         width="350px"
         height="350px"
       />
-      <h1 className="font-medium text-4xl my-4 text-center">
+      <h1 className="font-medium text-4xl my-4 text-center z-10">
         <p>{error.statusText}.</p>
         <p>
           Status code is <b>{error.status}</b>
         </p>
       </h1>
-      <LinkButton backgroundColor="primary-500" href="/" text="Go to the homepage" />
+      <a href='/'>
+        <PrimaryButton backgroundColor="primary-500" text="Go to the homepage" />
+      </a>
     </div>
   </div>
 }

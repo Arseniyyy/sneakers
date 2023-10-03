@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import CartIcon from 'components/icons/CartIcon'
 import useMediaQuery from 'hooks/useMediaQuery'
 import BurgerMenuIcon from 'components/icons/BurgerMenuIcon'
 import ProfileIcon from 'components/icons/ProfileIcon'
 import Sidebar from './Sidebar'
 import Cart from 'components/cart'
+import { mainPageItems } from 'misc/arrayOfItems'
 
 const Navbar = () => {
   const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)')
@@ -39,51 +40,7 @@ const Navbar = () => {
       {/* Sidebar elements */}
       <Sidebar
         header="Cart"
-        chidlren={<Cart items={[
-          {
-            imgPath: "img/sneakers/2.jpg",
-            text: "Man sneakers Nike Blazer Mid Seude",
-            price: 99,
-          },
-          {
-            imgPath: "img/sneakers/2.jpg",
-            text: "Man sneakers Nike Blazer Mid Seude",
-            price: 99,
-          },
-          {
-            imgPath: "img/sneakers/2.jpg",
-            text: "Man sneakers Nike Blazer Mid Seude",
-            price: 99,
-          },
-          {
-            imgPath: "img/sneakers/2.jpg",
-            text: "Man sneakers Nike Blazer Mid Seude",
-            price: 99,
-          },
-          {
-            imgPath: "img/sneakers/2.jpg",
-            text: "Man sneakers Nike Blazer Mid Seude",
-            price: 99,
-          },
-          {
-            imgPath: "img/sneakers/2.jpg",
-            text: "Man sneakers Nike Blazer Mid Seude",
-            price: 99,
-          },
-          {
-            imgPath: "img/sneakers/2.jpg",
-            text: "Man sneakers Nike Blazer Mid Seude",
-            price: 99,
-          },          {
-            imgPath: "img/sneakers/2.jpg",
-            text: "Man sneakers Nike Blazer Mid Seude",
-            price: 99,
-          },          {
-            imgPath: "img/sneakers/2.jpg",
-            text: "Man sneakers Nike Blazer Mid Seude",
-            price: 99,
-          },
-        ]} />}
+        chidlren={<Cart items={mainPageItems} />}
         isToggled={isCartToggled}
         xMarkIconWidth={xMarkIconWidth}
         xMarkIconHeight={xMarkIconHeight}
@@ -126,7 +83,7 @@ const Navbar = () => {
             <div>
               <button onClick={handleCartToggleClick}>
                 <CartIcon
-                  className="fixed bottom-10 right-3.5 z-0"
+                  className="fixed bottom-10 right-3.5"
                   width={defaultIconWidth}
                   height={defaultIconHeight}
                 />

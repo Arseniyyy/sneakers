@@ -9,7 +9,6 @@ const ArrowIcon = ({ className, width, height }: IIconProps) => {
     viewBox="0 0 16 14"
     fill="none"
     notAnimated={true}
-    stroke="#fff"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"

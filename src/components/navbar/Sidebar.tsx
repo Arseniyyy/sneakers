@@ -11,13 +11,12 @@ interface IProps {
   onClick: () => void
 }
 
-const Sidebar = ({ xMarkIconWidth, xMarkIconHeight, isToggled, header, chidlren, onClick }: IProps) => {
-  return <div className={`fixed left-0 top-0 bg-black-0.5 ${isToggled ? 'z-[1] w-full h-full' : ''}`}>
-    <div className={`sidebar overflow-scroll fixed flex flex-col right-0 px-[30px] py-10 z-40 h-full min-w-[370px] max-w-[420px] bg-white-full drop-shadow-xl ${isToggled ? 'open' : ''}`}>
+const Sidebar = ({ isToggled, header, chidlren, onClick }: IProps) => {
+  return <div className={`fixed left-0 top-0 bg-black-0.5 ${isToggled ? 'z-20 w-full h-full' : ''}`}>
+    <div className={`sidebar overflow-scroll fixed flex flex-col right-0 px-[15px] py-10 z-40 h-full min-w-[370px] max-w-[420px] bg-white-full drop-shadow-xl ${isToggled ? 'open' : ''}`}>
       <div className="flex justify-between py-8 bg-white-full">
         <h1 className="font-bold text-2xl">{header}</h1>
         <button className="mr-4" onClick={onClick}>
-          {/* <XMarkIcon className="bg-white-full" width={xMarkIconWidth} height={xMarkIconHeight} /> */}
           <RemoveOrCloseButton width={30} height={30} />
         </button>
       </div>

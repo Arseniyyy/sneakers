@@ -1,9 +1,11 @@
+import React from 'react'
 type StrokeLinecapType = "butt" | "round" | "square" | "inherit" | undefined
 type StrokeLinejoinType = "miter" | "round" | "bevel" | "inherit" | undefined
 type FillRuleType = "nonzero" | "evenodd" | "inherit" | undefined
 
 export interface CommonIconProps {
   className?: string
+  onClick?: (event: React.MouseEvent<SVGElement>) => void
   width: string | number
   height: string | number
   viewBox: string
@@ -25,6 +27,7 @@ export interface CommonIconProps {
 
 export interface IIconProps {
   className?: string
+  onClick?: (event: React.MouseEvent<SVGElement>) => void
   width: string | number
   height: string | number
 }
