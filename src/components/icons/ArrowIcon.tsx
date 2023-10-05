@@ -1,7 +1,7 @@
 import CommonIcon from './CommonIcon'
-import { IIconProps } from 'types/icons'
+import { IconProps } from 'types/icons'
 
-const ArrowIcon = ({ className, width, height }: IIconProps) => {
+const ArrowIcon = ({ className, width, height }: IconProps) => {
   return <CommonIcon
     className={className}
     width={width}

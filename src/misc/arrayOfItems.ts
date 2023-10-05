@@ -4,37 +4,37 @@ const mainPageItems: Array<Item> = [
   {
     src: "img/sneakers/2.jpg",
     title: "Man sneakers Nike Blazer Mid Seude",
-    price: 99,
+    price: 199,
   },
   {
     src: "img/sneakers/2.jpg",
     title: "Man sneakers Nike Blazer Mid Seude",
-    price: 99,
+    price: 299,
   },
   {
     src: "img/sneakers/2.jpg",
     title: "Man sneakers Nike Blazer Mid Seude",
-    price: 99,
+    price: 999,
   },
   {
     src: "img/sneakers/2.jpg",
     title: "Man sneakers Nike Blazer Mid Seude",
-    price: 99,
+    price: 399,
   },
   {
     src: "img/sneakers/2.jpg",
     title: "Man sneakers Nike Blazer Mid Seude",
-    price: 99,
+    price: 89,
   },
   {
     src: "img/sneakers/2.jpg",
     title: "Man sneakers Nike Blazer Mid Seude",
-    price: 99,
+    price: 49,
   },
   {
     src: "img/sneakers/2.jpg",
     title: "Man sneakers Nike Blazer Mid Seude",
-    price: 99,
+    price: 559,
   },
   {
     src: "img/sneakers/2.jpg",

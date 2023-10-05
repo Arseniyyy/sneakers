@@ -1,6 +1,6 @@
-import { IIconProps } from 'types/icons'
+import { IconProps } from 'types/icons'
 
-const EmptyBoxIcon = ({ className, width, height }: IIconProps) => {
+const EmptyBoxIcon = ({ className, width, height }: IconProps) => {
   return <svg viewBox="0 0 1024 1024" className={`${className} icon`} width={width} height={height} version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#fff">
     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
     <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>

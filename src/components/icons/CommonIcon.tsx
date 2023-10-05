@@ -33,8 +33,8 @@ const CommonIcon = ({
       className={`${className} ${notAnimated ? '' : 'transition hover:scale-125'} ${isBackgroundColorStoney ? `bg-white-0.5` : ''}`}
       width={width}
       height={height}
-      viewBox={viewBox}
-      fill={fill}
+      viewBox={viewBox || "0 0 24 24"}
+      fill={fill || "none"}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       onMouseEnter={() => setIsHovered(true)}

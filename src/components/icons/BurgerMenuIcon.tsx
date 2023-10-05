@@ -1,7 +1,7 @@
 import CommonIcon from './CommonIcon'
-import { IIconProps } from 'types/icons'
+import { IconProps } from 'types/icons'
 
-const BurgerMenuIcon = ({ width, height }: IIconProps) => {
+const BurgerMenuIcon = ({ width, height }: IconProps) => {
   return <CommonIcon
     className="my-2"
     width={width}

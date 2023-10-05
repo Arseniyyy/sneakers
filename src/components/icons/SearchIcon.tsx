@@ -1,7 +1,7 @@
 import CommonIcon from './CommonIcon'
-import { IIconProps } from 'types/icons'
+import { IconProps } from 'types/icons'
 
-const SearchIcon = ({ className, width, height }: IIconProps) => {
+const SearchIcon = ({ className, width, height }: IconProps) => {
   return <svg className={className} width={width} height={height} viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
     <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
