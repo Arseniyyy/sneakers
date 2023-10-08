@@ -30,7 +30,7 @@ const CommonIcon = ({
   return (
     <svg
       onClick={onClick}
-      className={`${className} ${notAnimated ? '' : 'transition hover:scale-125'} ${isBackgroundColorStoney ? `bg-white-0.5` : ''}`}
+      className={`${className} ${notAnimated ? '' : 'transition hover:scale-125'} ${isBackgroundColorStoney && `bg-white-0.5`}`}
       width={width}
       height={height}
       viewBox={viewBox || "0 0 24 24"}

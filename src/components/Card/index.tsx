@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useMediaQuery from 'hooks/useMediaQuery'
 import { smallScreens, xsScreens } from 'screenDefinitions'
 import PlusIcon from 'components/icons/PlusIcon'
 import HeartUnliked from 'components/icons/HeartUnliked'
 import HeartLiked from 'components/icons/HeartLiked'
-import { Item } from 'types/card'
+import { Item, CardItem } from 'types/card'
 import CheckMarkIcon from 'components/icons/CheckMarkIcon'
 
-const Card = ({ src, title, price }: Item) => {
+const Card = ({ src, title, price, onAddToCart }: CardItem) => {
   const [isLiked, setIsLiked] = useState<boolean>(false)
   const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
   const isAboveSmallScreens = useMediaQuery(smallScreens)
@@ -16,11 +16,13 @@ const Card = ({ src, title, price }: Item) => {
   const heartIconStyles = "absolute cursor-pointer"
   const heartWidthHeight = isAboveSmallScreens ? 22 : 20
 
-  function handleHeartIconClick(_: React.MouseEvent<SVGElement>): void {
+  function handleHeartIconClick(): void {
     setIsLiked(!isLiked)
   }
-  function handlePlusIconClick(_: React.MouseEvent<SVGElement>): void {
-    console.log(price)
+  function handlePlusIconClick(): void {
+    setIsAddedToCart(!isAddedToCart)
+  }
+  function handleCheckMarkIconClick(): void {
     setIsAddedToCart(!isAddedToCart)
   }
 
@@ -53,7 +55,7 @@ const Card = ({ src, title, price }: Item) => {
         {/* Add to cart behavior */}
         {isAddedToCart ?
           <CheckMarkIcon
-            onClick={handlePlusIconClick}
+            onClick={handleCheckMarkIconClick}
             width={plusIconWidthHeight}
             height={plusIconWidthHeight}
           />

@@ -4,7 +4,6 @@ import RemoveOrCloseButton from 'components/icons/RemoveOrCloseButton'
 import ArrowIcon from 'components/icons/ArrowIcon'
 import { Item } from 'types/card'
 
-
 interface Props {
   items?: Item[]
 }

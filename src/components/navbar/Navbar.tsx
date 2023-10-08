@@ -1,18 +1,23 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import CartIcon from 'components/icons/CartIcon'
 import useMediaQuery from 'hooks/useMediaQuery'
 import BurgerMenuIcon from 'components/icons/BurgerMenuIcon'
 import ProfileIcon from 'components/icons/ProfileIcon'
 import Sidebar from './Sidebar'
 import Cart from 'components/cart'
-import { mainPageItems } from 'misc/arrayOfItems'
+import { setItems } from 'misc/CRUDFunctions'
+import { Item } from 'types/card'
+
 
 const Navbar = () => {
+  const slug = "cart"
+  const endpoint = `https://651ff1f2906e276284c3c49a.mockapi.io/${slug}`
   const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)')
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false)
   const [isCartToggled, setIsCartToggled] = useState<boolean>(false)
   const [scrollPosition, setScrollPosition] = useState<number>(0)
   const [cartMoneyAmount, setCartMoneyAmount] = useState<number>(0)
+  const [cartItems, setCartItems] = useState<Array<Item>>([])
   const isScrolled = scrollPosition > 120
 
   const defaultIconWidth = '35px'
@@ -22,10 +27,13 @@ const Navbar = () => {
   const xMarkIconWidth = 20
   const xMarkIconHeight = 20
 
-  const handleCartToggleClick = () => setIsCartToggled(!isCartToggled)
-  const handleMenuToggleClick = () => setIsMenuToggled(!isMenuToggled)
+  const handleCartToggleClick = () => { setIsCartToggled(!isCartToggled) }
+  const handleMenuToggleClick = () => { setIsMenuToggled(!isMenuToggled) }
+
+  const cartComponent = <Cart items={cartItems} />
 
   useEffect(() => {
+    setItems(endpoint, setCartItems)
     const handleScroll = () => {
       setScrollPosition(window.scrollY)
     }
@@ -40,7 +48,7 @@ const Navbar = () => {
       {/* Sidebar elements */}
       <Sidebar
         header="Cart"
-        chidlren={<Cart items={mainPageItems} />}
+        chidlren={cartComponent}
         isToggled={isCartToggled}
         xMarkIconWidth={xMarkIconWidth}
         xMarkIconHeight={xMarkIconHeight}

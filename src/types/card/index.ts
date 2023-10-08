@@ -3,3 +3,7 @@ export interface Item {
   title: string
   price: number
 }
+
+export interface CardItem extends Item {
+  onAddToCart: (obj: Item) => void
+}
