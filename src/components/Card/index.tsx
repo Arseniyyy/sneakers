@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import useMediaQuery from 'hooks/useMediaQuery'
 import { smallScreens, xsScreens } from 'screenDefinitions'
-import PlusIcon from 'components/icons/PlusIcon'
-import HeartUnliked from 'components/icons/HeartUnliked'
-import HeartLiked from 'components/icons/HeartLiked'
-import { Item, CardItem } from 'types/card'
-import CheckMarkIcon from 'components/icons/CheckMarkIcon'
+import PlusIcon from 'components/Icons/PlusIcon'
+import HeartUnliked from 'components/Icons/HeartUnliked'
+import HeartLiked from 'components/Icons/HeartLiked'
+import { CardItem } from 'types/Item'
+import CheckMarkIcon from 'components/Icons/CheckMarkIcon'
+import instance from 'settings/axios'
+import { useDispatch } from 'react-redux'
+import { ActionTypes } from 'reduxStore'
 
-const Card = ({ src, title, price, onAddToCart }: CardItem) => {
+const Card = ({ src, title, price }: CardItem) => {
+  const dispatch = useDispatch()
+
   const [isLiked, setIsLiked] = useState<boolean>(false)
   const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false)
   const isAboveSmallScreens = useMediaQuery(smallScreens)
@@ -19,11 +24,20 @@ const Card = ({ src, title, price, onAddToCart }: CardItem) => {
   function handleHeartIconClick(): void {
     setIsLiked(!isLiked)
   }
-  function handlePlusIconClick(): void {
+
+  function onClickCheckMarkIcon(): void {
     setIsAddedToCart(!isAddedToCart)
   }
-  function handleCheckMarkIconClick(): void {
+
+  async function onClickPlus() {
+    const payload = {
+      src: "img/sneakers/2.jpg",
+      title: title,
+      price: price
+    }
+    await instance.post("c", payload)
     setIsAddedToCart(!isAddedToCart)
+    dispatch({ type: ActionTypes.addItem, payload })
   }
 
   return <div className={`flex flex-col justify-between gap-5 transition-all hover:-translate-y-1 hover:shadow-xl border-[2px] border-solid border-white-0.5 rounded-3xl p-5 m-5 mr-6 min-w-[170px] max-w-[256px] h-auto ${isAboveXSScreens ? 'w-1/4' : 'w-[210px]'}`}>
@@ -55,13 +69,13 @@ const Card = ({ src, title, price, onAddToCart }: CardItem) => {
         {/* Add to cart behavior */}
         {isAddedToCart ?
           <CheckMarkIcon
-            onClick={handleCheckMarkIconClick}
+            onClick={onClickCheckMarkIcon}
             width={plusIconWidthHeight}
             height={plusIconWidthHeight}
           />
           :
           <PlusIcon
-            onClick={handlePlusIconClick}
+            onClick={onClickPlus}
             width={plusIconWidthHeight}
             height={plusIconWidthHeight}
           />

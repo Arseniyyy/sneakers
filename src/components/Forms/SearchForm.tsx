@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form"
-import SearchIcon from 'components/icons/SearchIcon'
+import SearchIcon from 'components/Icons/SearchIcon'
 
 interface Props {
   className?: string

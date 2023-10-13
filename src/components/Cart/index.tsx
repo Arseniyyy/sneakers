@@ -1,8 +1,8 @@
-import EmptyBoxIcon from 'components/icons/EmptyBoxIcon'
-import PrimaryButton from 'components/buttons/PrimaryButton'
-import RemoveOrCloseButton from 'components/icons/RemoveOrCloseButton'
-import ArrowIcon from 'components/icons/ArrowIcon'
-import { Item } from 'types/card'
+import EmptyBoxIcon from 'components/Icons/EmptyBoxIcon'
+import PrimaryButton from 'components/Buttons/PrimaryButton'
+import RemoveOrCloseButton from 'components/Icons/RemoveOrCloseButton'
+import ArrowIcon from 'components/Icons/ArrowIcon'
+import { Item } from 'types/Item'
 
 interface Props {
   items?: Item[]

@@ -1,15 +1,21 @@
-import axios, { AxiosResponse } from 'axios'
-import { Item } from 'types/card'
+import { AxiosResponse } from 'axios'
+import axios from 'settings/axios'
+import { Item } from 'types/Item'
 
-function setItems(endpoint: string, setFunction: (items: Array<Item>) => void): void {
+function setItems(slug: string, setFunction: (items: Array<Item>) => void): void {
   let items: Array<Item>
-  const result: Promise<AxiosResponse<Item[]>> = axios.get(endpoint)
-  result.then((r: AxiosResponse<Item[]>) => {
+  const result: Promise<AxiosResponse<Array<Item>>> = axios.get(slug)
+  result.then((r: AxiosResponse<Array<Item>>) => {
     items = r.data
     setFunction([...items])
   })
 }
 
+async function getCartItems(slug: string): Promise<Item[]> {
+  return (await axios.get(slug)).data
+}
+
 export {
-  setItems
+  setItems,
+  getCartItems,
 }

@@ -1,6 +1,6 @@
-import RemoveOrCloseButton from 'components/icons/RemoveOrCloseButton'
+import RemoveOrCloseButton from 'components/Icons/RemoveOrCloseButton'
 import { ReactElement } from 'react'
-import styles from 'components/navbar/Sidebar.module.scss'
+import styles from 'components/Navbar/Sidebar.module.scss'
 
 interface IProps {
   xMarkIconWidth: string | number

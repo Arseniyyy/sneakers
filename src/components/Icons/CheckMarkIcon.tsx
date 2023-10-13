@@ -1,4 +1,4 @@
-import CommonIcon from 'components/icons/CommonIcon'
+import CommonIcon from 'components/Icons/CommonIcon'
 import { IconProps } from 'types/icons'
 
 const CheckMarkIcon = ({ className, onClick, width, height }: IconProps) => {

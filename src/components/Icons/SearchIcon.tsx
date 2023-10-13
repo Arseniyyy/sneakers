@@ -1,4 +1,3 @@
-import CommonIcon from './CommonIcon'
 import { IconProps } from 'types/icons'
 
 const SearchIcon = ({ className, width, height }: IconProps) => {

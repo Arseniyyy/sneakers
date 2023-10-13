@@ -1,7 +1,5 @@
-import { useState } from 'react'
-import Cart from 'components/cart'
-import Root from 'components/root'
-import ErrorPage from 'components/root/ErrorPage'
+import Root from 'components/Root'
+import ErrorPage from 'components/Root/ErrorPage'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -10,11 +8,6 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />
   },
-  {
-    path: '/cart',
-    element: <Cart />,
-    errorElement: <ErrorPage />,
-  }
 ])
 
 function App() {
