@@ -2,20 +2,32 @@ import EmptyBoxIcon from 'components/Icons/EmptyBoxIcon'
 import PrimaryButton from 'components/Buttons/PrimaryButton'
 import RemoveOrCloseButton from 'components/Icons/RemoveOrCloseButton'
 import ArrowIcon from 'components/Icons/ArrowIcon'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import instance from 'settings/axios'
+import { ActionTypes } from 'reduxStore'
 import { Item } from 'types/Item'
 
 interface Props {
-  items?: Item[]
+  items: Array<Item>
+  sum: number
 }
 
-const Cart = ({ items }: Props) => {
-  let sum = 0
+const Cart = ({ items, sum }: Props) => {
+  const dispatch = useDispatch()
 
-  if (items?.length !== 0) {
-    items?.forEach(item => {
-      sum += item.price
-    })
-  }
+  useEffect(() => {
+    async function setCartItems() {
+      let sum = 0
+      const payload: Array<Item> = (await instance.get('c')).data
+      if (payload.length !== 0) {
+        payload.forEach((item: Item) => sum += item.price)
+      }
+      dispatch({ type: ActionTypes.setItems, payload: payload })
+      dispatch({ type: ActionTypes.setSum, sum: sum })
+    }
+    setCartItems()
+  }, [dispatch])
 
   return <div>
     {items?.length === 0 ? (

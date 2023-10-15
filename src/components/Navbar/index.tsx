@@ -3,33 +3,36 @@ import CartIcon from 'components/Icons/CartIcon'
 import useMediaQuery from 'hooks/useMediaQuery'
 import BurgerMenuIcon from 'components/Icons/BurgerMenuIcon'
 import ProfileIcon from 'components/Icons/ProfileIcon'
-import Sidebar from './Sidebar'
+import Sidebar from 'components/Sidebar'
 import Cart from 'components/Cart'
 import { useSelector } from 'react-redux'
-import { Items } from 'reduxStore'
-
+import { State } from 'reduxStore'
+import { Item } from 'types/Item'
+import BadgeIcon from 'components/Icons/BadgeIcon'
+import styles from 'components/Navbar/CartIcon.module.scss'
 
 const Navbar = () => {
-  const cartItems = useSelector((state: Items) => state.items)
+  const sum = useSelector((state: State) => state.sum)
+  const cartItems: Array<Item> = useSelector((state: State) => state.items)
+  const cartItemsLength = cartItems.length
 
   const isAboveMediumScreens = useMediaQuery('(min-width: 1060px)')
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false)
   const [isCartToggled, setIsCartToggled] = useState<boolean>(false)
   const [scrollPosition, setScrollPosition] = useState<number>(0)
-  const [cartMoneyAmount, setCartMoneyAmount] = useState<number>(0)
   const isScrolled = scrollPosition > 120
 
-  const defaultIconWidth = '35px'
-  const defaultIconHeight = '35px'
-  const profileIconWidth = '30px'
-  const profileIconHeight = '30px'
+  const defaultIconWidth = 35
+  const defaultIconHeight = 35
+  const profileIconWidth = 30
+  const profileIconHeight = 30
   const xMarkIconWidth = 20
   const xMarkIconHeight = 20
 
   const handleCartToggleClick = () => { setIsCartToggled(!isCartToggled) }
   const handleMenuToggleClick = () => { setIsMenuToggled(!isMenuToggled) }
 
-  const cartComponent = <Cart items={cartItems} />
+  const cartComponent = <Cart items={cartItems} sum={sum} />
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,16 +65,26 @@ const Navbar = () => {
       <img alt="logo" style={{ width: 210, height: 100 }} src="logo.svg" />
       {
         isAboveMediumScreens ?
-          <ul className="flex justify-between gap-6 mx-10">
+          <ul className="flex justify-between gap-6 mx-10 max-h-12">
             <button onClick={handleCartToggleClick}>
-              <CartIcon
-                className={`${isScrolled ? 'fixed bottom-10 right-10 z-0' : '-mx-4'}`}
-                width={defaultIconWidth}
-                height={defaultIconHeight}
-              />
+              <div className={styles.CartBadgeGroup}>
+                <CartIcon
+                  className={`${styles.CartIcon} ${isScrolled ? 'fixed bottom-10 right-10' : '-mx-4'}`}
+                  width={defaultIconWidth}
+                  height={defaultIconHeight}
+                  changeColorOnHover={false}
+                  notAnimated={false}
+                />
+                {cartItems.length > 0 &&
+                  <BadgeIcon
+                    className={styles.BadgeIcon}
+                    value={cartItemsLength}
+                  />
+                }
+              </div>
             </button>
             <div className="text-black font-thin py-3 pr-2">
-              {cartMoneyAmount}$
+              {sum}$
             </div>
             <button>
               <ProfileIcon width={profileIconWidth} height={profileIconHeight} />

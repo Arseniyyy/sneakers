@@ -1,14 +1,10 @@
 import CommonIcon from './CommonIcon'
-
-interface IProps {
-  width: string
-  height: string
-}
+import { IconProps } from 'types/icons'
 
 const ProfileIcon = ({
   width,
   height,
-}: IProps) => {
+}: IconProps) => {
   return <CommonIcon
     width={width}
     height={height}

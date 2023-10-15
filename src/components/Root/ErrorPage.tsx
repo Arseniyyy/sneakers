@@ -1,6 +1,6 @@
 import { useRouteError } from 'react-router-dom'
 import NotFoundIcon from 'components/Icons/NotFoundIcon'
-import Navbar from 'components/Navbar/Navbar'
+import Navbar from 'components/Navbar'
 import PrimaryButton from 'components/Buttons/PrimaryButton'
 
 const ErrorPage = () => {

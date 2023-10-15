@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react'
 import { setItems } from 'misc/CRUDFunctions'
 import { Item } from 'types/Item'
-import Navbar from 'components/Navbar/Navbar'
+import Navbar from 'components/Navbar'
 import Main from 'components/Main'
 import { Provider } from 'react-redux'
 import { store } from 'reduxStore'
+import { mainItemsSlug } from 'settings'
 
 const Root = () => {
-  const mainItemsSlug = "i"
-
   const [mainPageItems, setMainItems] = useState<Array<Item>>([])
 
   useEffect(() => {
@@ -18,9 +17,9 @@ const Root = () => {
   return <div>
     <Provider store={store}>
       <Navbar />
-        <Main
-          items={mainPageItems}
-        />
+      <Main
+        items={mainPageItems}
+      />
     </Provider>
   </div>
 }
