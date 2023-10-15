@@ -77,7 +77,7 @@ const Navbar = () => {
                 />
                 {cartItems.length > 0 &&
                   <BadgeIcon
-                    className={styles.BadgeIcon}
+                    className={`${styles.BadgeIcon} absolute top-8`}
                     value={cartItemsLength}
                   />
                 }
@@ -101,11 +101,19 @@ const Navbar = () => {
             </div>
             <div>
               <button onClick={handleCartToggleClick}>
-                <CartIcon
-                  className="fixed bottom-10 right-3.5"
-                  width={defaultIconWidth}
-                  height={defaultIconHeight}
-                />
+                <div className={styles.CartBadgeGroup}>
+                  <CartIcon
+                    className={`${styles.CartIcon} fixed bottom-10 right-3.5`}
+                    width={defaultIconWidth}
+                    height={defaultIconHeight}
+                  />
+                  {cartItems.length > 0 &&
+                    <BadgeIcon
+                      className={`${styles.BadgeIcon} fixed bottom-16 right-2`}
+                      value={cartItemsLength}
+                    />
+                  }
+                </div>
               </button>
             </div>
           </div>
