@@ -1,4 +1,4 @@
-import RemoveOrCloseButton from 'components/Icons/RemoveOrCloseButton'
+import RemoveOrCloseIcon from 'components/Icons/RemoveOrCloseIcon'
 import { ReactElement } from 'react'
 import styles from 'components/Sidebar/Sidebar.module.scss'
 
@@ -17,7 +17,7 @@ const Sidebar = ({ isToggled, header, chidlren, onClick }: IProps) => {
       <div className="flex justify-between py-8 bg-white-full">
         <h1 className="font-bold text-2xl">{header}</h1>
         <button className="mr-4" onClick={onClick}>
-          <RemoveOrCloseButton width={30} height={30} />
+          <RemoveOrCloseIcon width={30} height={30} />
         </button>
       </div>
       {chidlren}

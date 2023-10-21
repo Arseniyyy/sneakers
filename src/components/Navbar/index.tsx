@@ -10,6 +10,7 @@ import { State } from 'reduxStore'
 import { Item } from 'types/Item'
 import BadgeIcon from 'components/Icons/BadgeIcon'
 import styles from 'components/Navbar/CartIcon.module.scss'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   const sum = useSelector((state: State) => state.sum)
@@ -65,32 +66,39 @@ const Navbar = () => {
       <img alt="logo" style={{ width: 210, height: 100 }} src="logo.svg" />
       {
         isAboveMediumScreens ?
-          <ul className="flex justify-between gap-6 mx-10 max-h-12">
-            <button onClick={handleCartToggleClick}>
-              <div className={styles.CartBadgeGroup}>
-                <CartIcon
-                  className={`${styles.CartIcon} ${isScrolled ? 'fixed bottom-10 right-10' : '-mx-4'}`}
-                  width={defaultIconWidth}
-                  height={defaultIconHeight}
-                  changeColorOnHover={false}
-                  notAnimated={false}
-                />
-                {cartItems.length > 0 &&
-                  <BadgeIcon
-                    className={`${styles.BadgeIcon} absolute top-8`}
-                    value={cartItemsLength}
-                  />
-                }
-              </div>
-            </button>
-            <div className="text-black font-thin py-3 pr-2">
-              {sum}$
+          <>
+            <div className="flex gap-8">
+              <Link to="/">Feed</Link>
+              <Link to="/about">About</Link>
+              <Link to="/contact">Contact us</Link>
             </div>
-            <button>
-              <ProfileIcon width={profileIconWidth} height={profileIconHeight} />
-            </button>
-          </ul>
 
+            <ul className="flex justify-between gap-6 mx-10 max-h-12">
+              <button onClick={handleCartToggleClick}>
+                <div className={styles.CartBadgeGroup}>
+                  <CartIcon
+                    className={`${styles.CartIcon} ${isScrolled ? 'fixed bottom-10 right-10' : '-mx-4'}`}
+                    width={defaultIconWidth}
+                    height={defaultIconHeight}
+                    changeColorOnHover={false}
+                    notAnimated={false}
+                  />
+                  {cartItems.length > 0 &&
+                    <BadgeIcon
+                      className={`${styles.BadgeIcon} absolute top-8`}
+                      value={cartItemsLength}
+                    />
+                  }
+                </div>
+              </button>
+              <div className="text-black font-thin py-3 pr-2">
+                {sum}$
+              </div>
+              <button>
+                <ProfileIcon width={profileIconWidth} height={profileIconHeight} />
+              </button>
+            </ul>
+          </>
           :
 
           <div>

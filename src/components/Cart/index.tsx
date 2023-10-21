@@ -1,6 +1,6 @@
 import EmptyBoxIcon from 'components/Icons/EmptyBoxIcon'
 import PrimaryButton from 'components/Buttons/PrimaryButton'
-import RemoveOrCloseButton from 'components/Icons/RemoveOrCloseButton'
+import RemoveOrCloseIcon from 'components/Icons/RemoveOrCloseIcon'
 import ArrowIcon from 'components/Icons/ArrowIcon'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -49,7 +49,7 @@ const Cart = ({ items, sum }: Props) => {
                   <b className="text-sm">{item.price}$</b>
                 </div>
                 <button className="mr-1">
-                  <RemoveOrCloseButton className="removeButton" width={30} height={30} />
+                  <RemoveOrCloseIcon className="removeButton" width={30} height={30} />
                 </button>
               </div>
             })}

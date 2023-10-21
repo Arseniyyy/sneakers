@@ -1,4 +1,5 @@
 export interface Item {
+  id: number
   src: string
   title: string
   price: number

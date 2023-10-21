@@ -10,7 +10,7 @@ import instance from 'settings/axios'
 import { useDispatch } from 'react-redux'
 import { ActionTypes } from 'reduxStore'
 
-const Card = ({ src, title, price }: CardItem) => {
+const Card = ({ id, src, title, price }: CardItem) => {
   const dispatch = useDispatch()
 
   const [isLiked, setIsLiked] = useState<boolean>(false)
@@ -25,12 +25,20 @@ const Card = ({ src, title, price }: CardItem) => {
     setIsLiked(!isLiked)
   }
 
-  function onClickCheckMarkIcon(): void {
+  async function onClickCheckMarkIcon(): Promise<void> {
+    /* Removes the item from the state and makes a delete request to the server. */
+    {/* const res = await instance.delete(`c/${id}`) */}
     setIsAddedToCart(!isAddedToCart)
+    dispatch({
+      type: ActionTypes.removeItem,
+      id: id,
+      price: price,
+    })
   }
 
-  async function onClickPlus() {
+  async function onClickPlus(): Promise<void> {
     const payload = {
+      id: id,
       src: src,
       title: title,
       price: price
@@ -41,23 +49,28 @@ const Card = ({ src, title, price }: CardItem) => {
   }
 
   return <div className={`flex flex-col justify-between gap-5 transition-all hover:scale-105 hover:shadow-xl border-[2px] border-solid border-white-0.5 rounded-3xl p-5 m-5 mr-6 min-w-[170px] max-w-[256px] h-auto ${isAboveXSScreens ? 'w-1/4' : 'w-[210px]'}`}>
-    <div>
-      {/* Unliked heart icon */}
-      {isLiked ?
-        <HeartLiked
-          className={heartIconStyles}
-          width={heartWidthHeight}
-          height={heartWidthHeight}
-          onClick={handleHeartIconClick}
-        />
-        :
-        <HeartUnliked
-          className={heartIconStyles}
-          width={heartWidthHeight}
-          height={heartWidthHeight}
-          onClick={handleHeartIconClick}
-        />
-      }
+    <div className="flex justify-between">
+      <div>
+        {/* Unliked heart icon */}
+        {isLiked ?
+          <HeartLiked
+            className={heartIconStyles}
+            width={heartWidthHeight}
+            height={heartWidthHeight}
+            onClick={handleHeartIconClick}
+          />
+          :
+          <HeartUnliked
+            className={heartIconStyles}
+            width={heartWidthHeight}
+            height={heartWidthHeight}
+            onClick={handleHeartIconClick}
+          />
+        }
+      </div>
+
+      {/* ID */}
+      <div className="font-bold">ID: {id}</div>
     </div>
     <img width={220} height={100} src={src} alt="1.png" />
     <h5 className="font-normal text-sm">{title}</h5>

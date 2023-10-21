@@ -1,5 +1,6 @@
 import NotFoundIcon from 'components/Icons/NotFoundIcon'
 import PrimaryButton from 'components/Buttons/PrimaryButton'
+import { Link } from 'react-router-dom'
 
 const NotFound = () => {
   return <div>
@@ -12,9 +13,9 @@ const NotFound = () => {
       <h1 className="font-medium text-4xl my-4 text-center z-10">
         <p>Not found.</p>
       </h1>
-      <a href='/'>
+      <Link to="/">
         <PrimaryButton backgroundColor="primary-500" text="Go to the homepage" />
-      </a>
+      </Link>
     </div>
   </div>
 }
