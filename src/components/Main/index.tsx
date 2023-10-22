@@ -22,10 +22,12 @@ const Main = ({ items }: MainPageProps) => {
   }
 
   return <div>
-    <div className={`flex flex-wrap justify-between ${!isAboveMediumScreens && 'flex-col items-center'}`}>
-      <h1 className={`font-extrabold text-4xl mx-9 my-5 ${!isAboveMediumScreens && 'text-center'}`}>
-        {searchValue ? `Searching on ${searchValue}` : header}
-      </h1>
+    <div className={`flex flex-nowrap justify-between ${!isAboveMediumScreens && 'flex-col items-center'}`}>
+      <div className="max-w-3xl break-all">
+        <h1 className={`font-extrabold text-4xl mx-9 my-5 ${!isAboveMediumScreens && 'text-center'}`}>
+          {searchValue ? `Searching on ${searchValue}` : header}
+        </h1>
+      </div>
       <SearchForm
         className={`items-center  ${isAboveMediumScreens && 'mr-16 my-5'}`}
         searchValue={searchValue}

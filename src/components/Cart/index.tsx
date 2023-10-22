@@ -11,18 +11,21 @@ import { Item } from 'types/Item'
 interface Props {
   items: Array<Item>
   sum: number
+  onCartToggleClick: () => void
 }
 
-const Cart = ({ items, sum }: Props) => {
+const Cart = ({ items, sum, onCartToggleClick }: Props) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
     async function setCartItems() {
       let sum = 0
       const payload: Array<Item> = (await instance.get('c')).data
+
       if (payload.length !== 0) {
         payload.forEach((item: Item) => sum += item.price)
       }
+
       dispatch({ type: ActionTypes.setItems, payload: payload })
       dispatch({ type: ActionTypes.setSum, sum: sum })
     }
@@ -31,12 +34,15 @@ const Cart = ({ items, sum }: Props) => {
 
   return <div>
     {items?.length === 0 ? (
-      <div className="flex flex-col items-center h-full justify-center pb-40 bg-white-full gap-2 px-5">
+      <div className="flex flex-col items-center h-full justify-center pb-40 bg-white-full gap-2 px-5 mt-[25%]">
         <EmptyBoxIcon className="bg-white-full" width={150} height={150} />
         <p className="font-bold text-2xl bg-white-full">Cart is empty</p>
-        <a href="/">
-          <PrimaryButton className="mt-10 bg-white-full" backgroundColor="white-0.5" text="Go to the homepage" />
-        </a>
+          <PrimaryButton
+            className="mt-5 bg-white-full"
+            backgroundColor="white-0.5"
+            text="Go back"
+            onClick={onCartToggleClick}
+          />
       </div>
     ) : (
         <div>

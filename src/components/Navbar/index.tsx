@@ -33,7 +33,11 @@ const Navbar = () => {
   const handleCartToggleClick = () => { setIsCartToggled(!isCartToggled) }
   const handleMenuToggleClick = () => { setIsMenuToggled(!isMenuToggled) }
 
-  const cartComponent = <Cart items={cartItems} sum={sum} />
+  const cartComponent = <Cart
+    items={cartItems}
+    sum={sum}
+    onCartToggleClick={handleCartToggleClick}
+  />
 
   useEffect(() => {
     const handleScroll = () => {
