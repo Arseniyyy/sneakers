@@ -9,6 +9,7 @@ import instance from 'settings/axios'
 import { ActionTypes } from 'store'
 import { Item } from 'types/Item'
 import { AnyAction } from 'redux'
+import { cartSlug } from 'settings/endpoints'
 
 interface Props {
   items: Array<Item>
@@ -17,11 +18,16 @@ interface Props {
 }
 
 const Cart = ({ items, sum, onCartToggleClick }: Props) => {
+  /**
+   * Represents a cart which can do the following actions:
+   * Storing added items
+   * Removing items by clicking on the X button or checkmark icon on the card of the added product
+   */
   const dispatch = useDispatch()
 
   function onClickRemoveButton(...args: Array<string | number>): void {
+    /* Removes an item from the cart and makes a delete request to the server. */
     const [id, price] = args
-    /* Removes an item from the cart and makes a delete request to the server */
     {/* const dispatchActionConfig: AnyAction = { */}
     {/*   type: ActionTypes.removeItem, */}
     {/*   id, */}
@@ -32,8 +38,10 @@ const Cart = ({ items, sum, onCartToggleClick }: Props) => {
 
   useEffect(() => {
     async function setCartItems() {
+      /* Makes a GET request to the `cart` endpoint and sets the response's data to state of items and the whole sum of the order. */
       let sum = 0
-      const payload: Array<Item> = (await instance.get('c')).data
+      const response = await instance.get(cartSlug)
+      const payload: Array<Item> = response.data
 
       if (payload.length !== 0) {
         payload.forEach((item: Item) => sum += item.price)

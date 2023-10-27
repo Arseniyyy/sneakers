@@ -9,9 +9,8 @@ import CheckMarkIcon from 'components/Icons/CheckMarkIcon'
 import instance from 'settings/axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { ActionTypes, State } from 'store'
-import { AxiosResponse } from 'axios'
-import { HttpStatus } from 'httpStatuses'
 import { cartSlug } from 'settings/endpoints'
+import { postItem } from 'misc/CRUDFunctions/Card'
 
 const Card = ({ id, src, title, price }: CardItem) => {
   const items = useSelector((state: State) => state.items)
@@ -41,24 +40,15 @@ const Card = ({ id, src, title, price }: CardItem) => {
     console.log(items)
   }
 
-  async function onClickPlus(): Promise<number> {
+  async function onClickPlus(): Promise<void> {
+    /* Makes a post request to the server with the payload of an item. */
     const payload = {
       id: id,
       src: src,
       title: title,
       price: price
     }
-    const response: AxiosResponse = await instance.post(cartSlug, payload)
-    if (response.status === HttpStatus.Created) {
-      setIsAddedToCart(!isAddedToCart)
-      dispatch({ type: ActionTypes.addItem, payload })
-      return response.status
-    }
-    else {
-      const errorMessage = `Object was not created. Error: ${response.statusText}. Status code: ${response.status}`
-      console.error(errorMessage)
-      throw new Error(errorMessage)
-    }
+    await postItem(cartSlug, payload, 201, instance, dispatch, isAddedToCart, setIsAddedToCart)
   }
 
   return <div className={`flex flex-col justify-between gap-5 transition-all hover:scale-105 hover:shadow-xl border-[2px] border-solid border-white-0.5 rounded-3xl p-5 m-5 mr-6 min-w-[170px] max-w-[256px] h-auto ${isAboveXSScreens ? 'w-1/4' : 'w-[210px]'}`}>
@@ -112,4 +102,3 @@ const Card = ({ id, src, title, price }: CardItem) => {
 }
 
 export default Card
-
