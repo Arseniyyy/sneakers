@@ -1,4 +1,5 @@
-import { Action, createStore, Reducer } from 'redux'
+import { Action, Reducer } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
 import { Item } from 'types/Item'
 
 interface A extends Action {
@@ -31,8 +32,8 @@ function reducer(state: any = defaultState, action: A): Reducer<any, A> {
       /* Data that is being transfered within action: payload.price */
       return {
         ...state,
-        items: state.items.concat([action.payload]),
-        sum: state.sum + action.payload.price
+        items: [...state.items, action.payload],
+        sum: state.sum + action.payload.price,
       }
     case ActionTypes.setItems:
       /* Data that is being transfered within action: payload */
@@ -53,9 +54,15 @@ function reducer(state: any = defaultState, action: A): Reducer<any, A> {
     //   }
     case ActionTypes.removeItem:
       /* Data that is being transfered within action: id, itemPrice */
+      const items = state.items
+      let id = 0
       return {
         ...state,
-        items: state.items.filter((item: Item, _: number) => item.id !== action.id),
+        // items: state.items.filter((item: Item, _: number) => item.id !== action.id),
+        items: [
+          ...state.items.slice(0, id),
+          ...state.items.slice(id + 1)
+        ],
         sum: state.sum - action.price,
       }
     default:
@@ -63,6 +70,8 @@ function reducer(state: any = defaultState, action: A): Reducer<any, A> {
   }
 }
 
-const store = createStore(reducer)
+const store = configureStore({
+  reducer
+})
 
 export { store }

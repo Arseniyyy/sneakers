@@ -7,10 +7,14 @@ import HeartLiked from 'components/Icons/HeartLiked'
 import { CardItem } from 'types/Item'
 import CheckMarkIcon from 'components/Icons/CheckMarkIcon'
 import instance from 'settings/axios'
-import { useDispatch } from 'react-redux'
-import { ActionTypes } from 'reduxStore'
+import { useDispatch, useSelector } from 'react-redux'
+import { ActionTypes, State } from 'store'
+import { AxiosResponse } from 'axios'
+import { HttpStatus } from 'httpStatuses'
+import { cartSlug } from 'settings/endpoints'
 
 const Card = ({ id, src, title, price }: CardItem) => {
+  const items = useSelector((state: State) => state.items)
   const dispatch = useDispatch()
 
   const [isLiked, setIsLiked] = useState<boolean>(false)
@@ -31,21 +35,30 @@ const Card = ({ id, src, title, price }: CardItem) => {
     setIsAddedToCart(!isAddedToCart)
     dispatch({
       type: ActionTypes.removeItem,
-      id: id,
-      price: price,
+      id,
+      price,
     })
+    console.log(items)
   }
 
-  async function onClickPlus(): Promise<void> {
+  async function onClickPlus(): Promise<number> {
     const payload = {
       id: id,
       src: src,
       title: title,
       price: price
     }
-    await instance.post("c", payload)
-    setIsAddedToCart(!isAddedToCart)
-    dispatch({ type: ActionTypes.addItem, payload })
+    const response: AxiosResponse = await instance.post(cartSlug, payload)
+    if (response.status === HttpStatus.Created) {
+      setIsAddedToCart(!isAddedToCart)
+      dispatch({ type: ActionTypes.addItem, payload })
+      return response.status
+    }
+    else {
+      const errorMessage = `Object was not created. Error: ${response.statusText}. Status code: ${response.status}`
+      console.error(errorMessage)
+      throw new Error(errorMessage)
+    }
   }
 
   return <div className={`flex flex-col justify-between gap-5 transition-all hover:scale-105 hover:shadow-xl border-[2px] border-solid border-white-0.5 rounded-3xl p-5 m-5 mr-6 min-w-[170px] max-w-[256px] h-auto ${isAboveXSScreens ? 'w-1/4' : 'w-[210px]'}`}>

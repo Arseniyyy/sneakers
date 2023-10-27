@@ -5,13 +5,13 @@ type FillRuleType = "nonzero" | "evenodd" | "inherit" | undefined
 
 export interface IconProps {
   className?: string
-  onClick?: (event: React.MouseEvent<SVGElement>) => void
   width: string | number
   height: string | number
   isFillChanged?: boolean
   isBackgroundColorStoney?: boolean
   changeColorOnHover?: boolean
   notAnimated?: boolean
+  onClick?: (event?: React.MouseEvent<SVGElement>, ...args: Array<string | number>) => void
 }
 
 export interface CommonIconProps extends IconProps {

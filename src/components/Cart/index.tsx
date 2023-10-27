@@ -1,3 +1,4 @@
+import React from 'react'
 import EmptyBoxIcon from 'components/Icons/EmptyBoxIcon'
 import PrimaryButton from 'components/Buttons/PrimaryButton'
 import RemoveOrCloseIcon from 'components/Icons/RemoveOrCloseIcon'
@@ -5,8 +6,9 @@ import ArrowIcon from 'components/Icons/ArrowIcon'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import instance from 'settings/axios'
-import { ActionTypes } from 'reduxStore'
+import { ActionTypes } from 'store'
 import { Item } from 'types/Item'
+import { AnyAction } from 'redux'
 
 interface Props {
   items: Array<Item>
@@ -16,6 +18,17 @@ interface Props {
 
 const Cart = ({ items, sum, onCartToggleClick }: Props) => {
   const dispatch = useDispatch()
+
+  function onClickRemoveButton(...args: Array<string | number>): void {
+    const [id, price] = args
+    /* Removes an item from the cart and makes a delete request to the server */
+    {/* const dispatchActionConfig: AnyAction = { */}
+    {/*   type: ActionTypes.removeItem, */}
+    {/*   id, */}
+    {/*   price, */}
+    {/* } */}
+    {/* dispatch(dispatchActionConfig) */}
+  }
 
   useEffect(() => {
     async function setCartItems() {
@@ -55,7 +68,12 @@ const Cart = ({ items, sum, onCartToggleClick }: Props) => {
                   <b className="text-sm">{item.price}$</b>
                 </div>
                 <button className="mr-1">
-                  <RemoveOrCloseIcon className="removeButton" width={30} height={30} />
+                <RemoveOrCloseIcon
+                  className="removeButton"
+                  width={30}
+                  height={30}
+                  onClick={() => onClickRemoveButton(item.id, item.price)}
+                />
                 </button>
               </div>
             })}
