@@ -13,6 +13,7 @@ import { cartSlug } from 'settings/endpoints'
 import { postItem } from 'misc/CRUDFunctions/Card'
 
 const Card = ({ id, src, title, price }: CardItem) => {
+  /* Represents a card of a pair of sneakers. */
   const items = useSelector((state: State) => state.items)
   const dispatch = useDispatch()
 

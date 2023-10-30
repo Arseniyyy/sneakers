@@ -15,6 +15,7 @@ type Inputs = {
 }
 
 const SearchForm = ({ className, searchValue, onChangeSearchInput, onClearSearchValue }: Props) => {
+  /* A search form that is on the main page of the site. */
   const { register, handleSubmit } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = data => console.log(data)
 

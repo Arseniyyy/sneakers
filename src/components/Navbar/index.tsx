@@ -13,6 +13,7 @@ import styles from 'components/Navbar/CartIcon.module.scss'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+  /* A navigation bar. */
   const sum = useSelector((state: State) => state.sum)
   const cartItems: Array<Item> = useSelector((state: State) => state.items)
   const cartItemsLength = cartItems.length

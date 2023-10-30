@@ -6,6 +6,7 @@ import { Item, MainPageProps } from 'types/Item'
 import React, { useState } from 'react'
 
 const Main = ({ items }: MainPageProps) => {
+  /* Main page of the site. Shows all the available pairs of sneakers. */
   const isAboveMediumScreens = useMediaQuery(smallScreens)
   const [searchValue, setSearchValue] = useState<string>('')
 

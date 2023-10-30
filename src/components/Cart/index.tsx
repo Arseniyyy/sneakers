@@ -21,7 +21,7 @@ const Cart = ({ items, sum, onCartToggleClick }: Props) => {
   /**
    * Represents a cart which can do the following actions:
    * Storing added items
-   * Removing items by clicking on the X button or checkmark icon on the card of the added product
+   * Removing items by clicking the X button or checkmark icon on the card of the added product
    */
   const dispatch = useDispatch()
 
